@@ -1,0 +1,51 @@
+PnPAdmin has successfully been updated    PnPAdmin   {'response': 200, 'starting time': '2021-06-27 22:25:47.814599', 'finishing time': '2021-06-27 22:26:27.708219', 'time': '0:00:39.893620'}
+ShopriteAdmin has successfully been updated    ShopriteAdmin   {'response': 200, 'starting time': '2021-06-27 22:26:27.708219', 'finishing time': '2021-06-27 22:30:22.917964', 'time': '0:03:55.209745'}
+WooliesAdmin has successfully been updated    WooliesAdmin   {'response': 200, 'starting time': '2021-06-27 22:30:22.952965', 'finishing time': '2021-06-27 22:31:55.058559', 'time': '0:01:32.105594'}
+store MarkhamAdmin has failed    MarkhamAdmin   None
+MrpAdmin has successfully been updated    MrpAdmin   {'response': 200, 'starting time': '2021-06-27 22:32:01.944261', 'finishing time': '2021-06-27 22:32:53.254714', 'time': '0:00:51.310453'}
+store SportsceneAdmin has failed    SportsceneAdmin   None
+MarkhamAdmin has successfully been updated    MarkhamAdmin   {'response': 200, 'starting time': '2021-06-27 22:59:26.886345', 'finishing time': '2021-06-27 22:59:54.615761', 'time': '0:00:27.729416'}
+store ComputermaniaAdmin has failed    ComputermaniaAdmin   None
+store GameAdmin has failed    GameAdmin   None
+store HifiAdmin has failed    HifiAdmin   None
+store TakealotAdmin has failed    TakealotAdmin   None
+store SportsceneAdmin has failed    SportsceneAdmin   None
+store SuperbalistAdmin has failed    SuperbalistAdmin   None
+ComputermaniaAdmin has successfully been updated    ComputermaniaAdmin   {'response': 200, 'starting time': '2021-06-27 23:27:16.100001', 'finishing time': '2021-06-27 23:27:27.758515', 'time': '0:00:11.658514'}
+store GameAdmin has failed    GameAdmin   None
+HifiAdmin has successfully been updated    HifiAdmin   {'response': 200, 'starting time': '2021-06-27 23:48:28.105241', 'finishing time': '2021-06-27 23:48:50.424026', 'time': '0:00:22.318785'}
+TakealotAdmin has successfully been updated    TakealotAdmin   {'response': 200, 'starting time': '2021-06-27 23:49:53.007992', 'finishing time': '2021-06-27 23:50:26.773389', 'time': '0:00:33.765397'}
+GameAdmin has successfully been updated    GameAdmin   {'response': 200, 'starting time': '2021-06-28 01:30:30.125572', 'finishing time': '2021-06-28 01:41:04.011903', 'time': '0:10:33.886331'}
+SportsceneAdmin has successfully been updated    SportsceneAdmin   {'response': 200, 'starting time': '2021-06-28 01:41:04.090025', 'finishing time': '2021-06-28 02:18:48.951706', 'time': '0:37:44.861681'}
+SuperbalistAdmin has successfully been updated    SuperbalistAdmin   {'response': 200, 'starting time': '2021-06-28 02:18:48.998582', 'finishing time': '2021-06-28 02:46:48.460057', 'time': '0:27:59.461475'}
+WoolworthsClothingAdmin has successfully been updated    WoolworthsClothingAdmin   {'response': 200, 'starting time': '2021-06-28 02:46:48.527328', 'finishing time': '2021-06-28 03:07:49.836475', 'time': '0:21:01.309147'}
+PnPAdmin has successfully been updated    PnPAdmin   {'response': 200, 'starting time': '2021-06-29 21:05:29.902291', 'finishing time': '2021-06-29 21:07:01.762550', 'time': '0:01:31.860259'}
+store ShopriteAdmin has failed    ShopriteAdmin   None
+store WooliesAdmin has failed    WooliesAdmin   None
+store ComputermaniaAdmin has failed    ComputermaniaAdmin   None
+WooliesAdmin has successfully been updated    WooliesAdmin   {'response': 200, 'starting time': '2021-06-29 23:33:43.132296', 'finishing time': '2021-06-29 23:35:47.692222', 'time': '0:02:04.559926'}
+store ComputermaniaAdmin has failed    ComputermaniaAdmin   None
+GameAdmin has successfully been updated    GameAdmin   {'response': 200, 'starting time': '2021-06-29 23:35:55.338789', 'finishing time': '2021-06-29 23:38:03.629477', 'time': '0:02:08.290688'}
+store HifiAdmin has failed    HifiAdmin   None
+store TakealotAdmin has failed    TakealotAdmin   None
+store MarkhamAdmin has failed    MarkhamAdmin   None
+store MrpAdmin has failed    MrpAdmin   None
+store SportsceneAdmin has failed    SportsceneAdmin   None
+PnPAdmin has successfully been updated    PnPAdmin   {'response': 200, 'starting time': '2021-07-03 01:43:44.786714', 'finishing time': '2021-07-03 01:44:39.185962', 'time': '0:00:54.399248'}
+ShopriteAdmin has successfully been updated    ShopriteAdmin   {'response': 200, 'starting time': '2021-07-03 01:44:39.230962', 'finishing time': '2021-07-03 01:50:24.935125', 'time': '0:05:45.704163'}
+WooliesAdmin has successfully been updated    WooliesAdmin   {'response': 200, 'starting time': '2021-07-03 01:50:25.255641', 'finishing time': '2021-07-03 01:51:30.359411', 'time': '0:01:05.103770'}
+store ComputermaniaAdmin has failed    ComputermaniaAdmin   None
+GameAdmin has successfully been updated    GameAdmin   {'response': 200, 'starting time': '2021-07-03 01:51:37.675305', 'finishing time': '2021-07-03 02:02:34.842307', 'time': '0:10:57.167002'}
+store HifiAdmin has failed    HifiAdmin   None
+store TakealotAdmin has failed    TakealotAdmin   None
+store MarkhamAdmin has failed    MarkhamAdmin   None
+store SportsceneAdmin has failed    SportsceneAdmin   None
+WoolworthsClothingAdmin has successfully been updated    WoolworthsClothingAdmin   {'response': 200, 'starting time': '2021-07-03 02:02:50.819766', 'finishing time': '2021-07-03 02:24:22.277547', 'time': '0:21:31.457781'}
+ComputermaniaAdmin has successfully been updated    ComputermaniaAdmin   {'response': 200, 'starting time': '2021-07-03 03:50:18.231579', 'finishing time': '2021-07-03 03:50:40.212094', 'time': '0:00:21.980515'}
+store HifiAdmin has failed    HifiAdmin   None
+TakealotAdmin has successfully been updated    TakealotAdmin   {'response': 200, 'starting time': '2021-07-03 03:50:41.001680', 'finishing time': '2021-07-03 03:51:13.544042', 'time': '0:00:32.542362'}
+MarkhamAdmin has successfully been updated    MarkhamAdmin   {'response': 200, 'starting time': '2021-07-03 03:51:13.632044', 'finishing time': '2021-07-03 03:51:30.762243', 'time': '0:00:17.130199'}
+SportsceneAdmin has successfully been updated    SportsceneAdmin   {'response': 200, 'starting time': '2021-07-03 03:51:30.856768', 'finishing time': '2021-07-03 04:32:50.238961', 'time': '0:41:19.382193'}
+SuperbalistAdmin has successfully been updated    SuperbalistAdmin   {'response': 200, 'starting time': '2021-07-03 04:32:51.080568', 'finishing time': '2021-07-03 05:10:45.713236', 'time': '0:37:54.632668'}
+store HifiAdmin has failed    HifiAdmin   None
+HifiAdmin has successfully been updated    HifiAdmin   {'response': 200, 'starting time': '2021-07-03 05:21:09.612282', 'finishing time': '2021-07-03 05:21:21.696484', 'time': '0:00:12.084202'}
