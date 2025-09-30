@@ -2,6 +2,10 @@
 
 A comprehensive REST API backend for the Savvy Shopper multi-retailer price comparison platform. This Flask-based service aggregates product data from 12 different South African retailers across three major categories: Groceries, Clothing, and PC Components.
 
+<video src="static/savvy-shopper-demo-1_small1.mp4" controls autoplay loop muted width="640" height="480">
+  Your browser does not support the video tag.
+</video>
+
 ## 🎯 Project Overview
 
 Savvy Shopper is a full-stack price comparison application that empowers consumers to make informed purchasing decisions by tracking product prices across multiple retailers. The backend serves as the central data hub, processing web-scraped data and providing RESTful API endpoints for mobile (Flutter) and Chrome extension clients.
@@ -37,11 +41,13 @@ Mobile App (Flutter)  +  Chrome Extension
 ## 🛍️ Supported Retailers
 
 ### Groceries (3 Stores)
+
 - **Pick n Pay (PnP)** - `/pnp-client`, `/pnp-admin`
 - **Shoprite** - `/client`, `/admin`
 - **Woolworths Groceries** - `/woolies-client`, `/woolies-admin`
 
 ### Clothing (6 Stores)
+
 - **Foschini** - `/foschini-client`, `/foschini-admin`
 - **Markham** - `/markham-client`, `/markham-admin`
 - **MRP** - `/mrp-client`, `/mrp-admin`
@@ -50,6 +56,7 @@ Mobile App (Flutter)  +  Chrome Extension
 - **Woolworths Clothing** - `/woolworths-clothing-client`, `/woolworths-clothing-admin`
 
 ### PC Components & Electronics (5 Stores)
+
 - **Computermania** - `/computermania-client`, `/computermania-admin`
 - **Game** - `/game-client`, `/game-admin`
 - **HiFi Corp** - `/hifi-client`, `/hifi-admin`
@@ -59,6 +66,7 @@ Mobile App (Flutter)  +  Chrome Extension
 ## 🛠️ Tech Stack
 
 ### Backend Framework
+
 - **Python 3.9.7**
 - **Flask 2.1.0** - Web framework
 - **Flask-RESTX 1.3.2** - REST API with Swagger documentation
@@ -69,10 +77,13 @@ Mobile App (Flutter)  +  Chrome Extension
 ### Databases
 
 #### **local db**
+
 Useed to store data locally, used to serve the mobile app.
+
 - **SQLite** - Local product data storage
 
 #### **cloud**
+
 The scrappers write to these db. I used 3 databases here, as l did not have the funds to
 buy the storage, so l had to stay within each service providers free tier.
 This also gave me a chance to explore different database service providers.
@@ -82,17 +93,20 @@ This also gave me a chance to explore different database service providers.
 - **Firebase Realtime DB** - Real-time data synchronization
 
 ### Data Processing
+
 - **Pandas 1.1.4** - Data manipulation and analysis
 - **NumPy 1.21.6** - Numerical computations
 - **SciPy 1.7.1** - Scientific computing
 - **Seaborn 0.11.2** - Data visualization during developemt
 
 ### Cloud Services
+
 - **AWS (boto3 1.18.56)** - DynamoDB, Lambda scheduling
 - **Google Cloud Platform** - Firebase, Cloud Storage, Firestore
 - **Heroku** - Web scraper hosting
 
 ### Additional Tools
+
 - **Requests 2.28.1** - HTTP library
 - **Python-dotenv 0.17.1** - Environment configuration
 
@@ -149,17 +163,20 @@ nothing_to_see_here/
 ## 🚀 Installation & Setup
 
 ### Prerequisites
+
 - Python 3.8 or higher
 - pip package manager
 - Virtual environment (recommended)
 
 ### 1. Clone the Repository
+
 ```bash
 git clone <repository-url>
 cd nothing_to_see_here
 ```
 
 ### 2. Create Virtual Environment
+
 ```bash
 # Windows
 python -m venv venv
@@ -171,12 +188,15 @@ source venv/bin/activate
 ```
 
 ### 3. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 4. Environment Configuration
+
 Create a `.env` file in the root directory with your credentials:
+
 ```env
 # Database configurations
 MONGODB_URI=your_mongodb_connection_string
@@ -193,6 +213,7 @@ SECRET_KEY=your_secret_key
 ```
 
 ### 5. Initialize Database
+
 ```bash
 python
 >>> from website import db
@@ -203,17 +224,21 @@ python
 ## 💻 Usage
 
 ### Running the Development Server
+
 ```bash
 python app.py
 ```
+
 The API will be available at `http://localhost:5000`
 
 ### Running in Production
+
 ```bash
 gunicorn app:app --bind 0.0.0.0:5000
 ```
 
 ### Accessing API Documentation
+
 Navigate to: `http://localhost:5000/docs`
 
 This provides interactive Swagger UI documentation for all API endpoints.
@@ -223,6 +248,7 @@ This provides interactive Swagger UI documentation for all API endpoints.
 The `update_db.py` script fetches fresh product data from web scrapers and updates the SQLite database.
 
 ### Configuration
+
 Edit `update_db.py` to select which stores to update:
 
 ```python
@@ -247,31 +273,38 @@ stores = [
 ```
 
 ### Running the Update Script
+
 ```bash
 python update_db.py
 ```
 
 ### Update Logs
+
 Monitor the update process through log files in `updates_logs/`:
+
 - **successful.txt** - Successfully updated stores with timestamps
 - **failed_to_update.txt** - Stores that failed to update
 - **errors.txt** - Detailed error messages and stack traces
 - **response_to_update.txt** - API response summaries
 
 ### Retry Logic
+
 The script automatically retries failed updates up to 3 times before marking a store as failed.
 
 ## 📡 API Endpoints
 
 ### Client Endpoints (GET)
+
 Retrieve product data for end-users:
 
 **Groceries:**
+
 - `GET /client` - Shoprite products
 - `GET /pnp-client` - Pick n Pay products
 - `GET /woolies-client` - Woolworths products
 
 **Clothing:**
+
 - `GET /foschini-client` - Foschini products
 - `GET /markham-client` - Markham products
 - `GET /mrp-client` - MRP products
@@ -280,6 +313,7 @@ Retrieve product data for end-users:
 - `GET /woolworths-clothing-client` - Woolworths Clothing products
 
 **PC Components:**
+
 - `GET /computermania-client` - Computermania products
 - `GET /game-client` - Game products
 - `GET /hifi-client` - HiFi Corp products
@@ -287,14 +321,16 @@ Retrieve product data for end-users:
 - `GET /takealot-client` - Takealot products
 
 ### Admin Endpoints (GET/POST)
+
 Manage and update product databases:
 
 - `GET/POST /admin` - Shoprite admin
 - `GET/POST /pnp-admin` - Pick n Pay admin
 - `GET/POST /woolies-admin` - Woolworths admin
-- *(Similar pattern for all stores)*
+- _(Similar pattern for all stores)_
 
 ### Product Search Endpoints
+
 Search for specific products by title:
 
 - `GET /get-product-data/<string:title>` - Shoprite
@@ -313,24 +349,29 @@ Search for specific products by title:
 - `GET /mrp-get-product-data/<string:title>` - MRP
 
 ### Home Endpoint
+
 - `GET /` - Welcome message
 
 ## 🗄️ Database Architecture
 
 ### SQLite (Primary Storage)
+
 - **Location**: `website/data.sqlite`
 - **Purpose**: Local storage for all product data
 - **Models**: Separate tables for each retailer
 
 ### MongoDB
+
 - **Purpose**: Shoprite data storage
 - **Connection**: Via PyMongo client
 
 ### DynamoDB
+
 - **Stores**: Makro, MRP, Game
 - **Connection**: Via boto3 AWS SDK
 
 ### Firebase Realtime Database
+
 - **Stores**: HiFi Corp, Takealot, Computermania, Clothing stores
 - **Connection**: Via firebase-admin SDK
 
@@ -353,11 +394,13 @@ Search for specific products by title:
 ## 🧪 Testing
 
 API endpoints can be tested using:
+
 - **Swagger UI**: `http://localhost:5000/docs`
 - **Postman Collection**: `savvy-shopper.postman_collection.json`
 - **cURL**: Manual endpoint testing
 
 Example:
+
 ```bash
 curl http://localhost:5000/pnp-client
 curl http://localhost:5000/pnp-get-product-data/milk
@@ -366,18 +409,22 @@ curl http://localhost:5000/pnp-get-product-data/milk
 ## 📝 Logging
 
 The application maintains comprehensive logs:
+
 - **api_logs.log** - General API request/response logs
 - **updates_logs/** - Database update operation logs
 
 ## 🚢 Deployment
 
 ### Heroku Deployment
+
 The `installation_files/Procfile` contains Heroku deployment configuration:
+
 ```
 web: gunicorn app:app
 ```
 
 Deploy to Heroku:
+
 ```bash
 git push heroku main
 ```
@@ -393,6 +440,7 @@ All rights reserved. This project is for portfolio demonstration purposes.
 ## 👨‍💻 Developer
 
 Developed as a solo full-stack project, encompassing:
+
 - Web scraping architecture (Python/Scrapy)
 - Backend API development (Flask/Python)
 - Database design and management (SQLite/MongoDB/DynamoDB/Firebase)
@@ -404,6 +452,7 @@ Developed as a solo full-stack project, encompassing:
 ## 🎓 Impact
 
 This project was instrumental in launching my career as a data scientist at Shoprite ZA, demonstrating:
+
 - Full-stack development capabilities
 - Cloud architecture proficiency
 - Data engineering skills
