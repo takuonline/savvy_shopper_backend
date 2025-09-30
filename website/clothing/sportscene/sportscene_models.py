@@ -2,7 +2,6 @@ from website import db
 
 
 class SportsceneBestBuys(db.Model):
-
     __tablename__ = "sportscene_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class SportsceneBestBuys(db.Model):
 
 
 class SportsceneWorstBuys(db.Model):
-
     __tablename__ = "sportscene_worst_buys"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -41,7 +39,6 @@ class SportsceneWorstBuys(db.Model):
 
 
 class SportsceneCleanDf(db.Model):
-
     __tablename__ = "sportscene_clean_df"
 
     title = db.Column(db.Text)
@@ -54,12 +51,14 @@ class SportsceneCleanDf(db.Model):
     # brand = db.Column(db.Text)
 
     # "index", brand, colors, date, image_url, link, price, title)
-    def __init__(self,
-    #  brand, colors, 
-     date,
-    #   image_url, link, 
-      price, title):
-
+    def __init__(
+        self,
+        #  brand, colors,
+        date,
+        #   image_url, link,
+        price,
+        title,
+    ):
         self.title = title
         # self.image_url = image_url
         self.date = date

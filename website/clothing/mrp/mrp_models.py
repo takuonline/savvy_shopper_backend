@@ -2,7 +2,6 @@ from website import db
 
 
 class MrpBestBuys(db.Model):
-
     __tablename__ = "mrp_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class MrpBestBuys(db.Model):
 
 
 class MrpWorstBuys(db.Model):
-
     __tablename__ = "mrp_worst_buys"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -38,7 +36,6 @@ class MrpWorstBuys(db.Model):
 
 
 class MrpCleanDf(db.Model):
-
     __tablename__ = "mrp_clean_df"
 
     title = db.Column(db.Text)
@@ -47,10 +44,13 @@ class MrpCleanDf(db.Model):
     price = db.Column(db.Float)
     # brand = db.Column(db.Text)
 
-    def __init__(self,
-    #  brand,
-      date, price, title):
-
+    def __init__(
+        self,
+        #  brand,
+        date,
+        price,
+        title,
+    ):
         self.title = title
         # self.image_url = image_url
         self.date = date

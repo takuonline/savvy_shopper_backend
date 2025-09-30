@@ -4,6 +4,7 @@ from website.dummy_objects.firebase_helper import FirebaseHelper
 from website.dummy_objects.dynamo_db_helper import DynamodbHelper
 import json
 
+
 class DbHelper:
     cheap_products = []
     expensive_products = []
@@ -14,7 +15,6 @@ class DbHelper:
     price_decrease = []
     price_increase = []
 
- 
     def retrieve_and_clean_data(
         self, keyname, db_url, table_name, BestBuys, WorstBuys, CleanDf
     ):
@@ -34,11 +34,9 @@ class DbHelper:
             # self.process_data(modified_df)
             # self.further_processing(modified_df)
             # self.store_data(BestBuys, WorstBuys)
-            
+
         else:
-            raise Exception(
-                "Unable to fetch data from firebase."
-            )
+            raise Exception("Unable to fetch data from firebase.")
 
     def dynamodb_retrieve_and_clean_data(
         self, table_name, BestBuys, WorstBuys, CleanDf
@@ -52,7 +50,6 @@ class DbHelper:
         )
 
         if len(df):
-
             self.clean_old_data(BestBuys, WorstBuys, CleanDf)
 
             modified_df = self.clean_df(df)
@@ -64,7 +61,9 @@ class DbHelper:
             # self.store_data(BestBuys, WorstBuys)
         else:
             raise Exception(
-                "Unable to fetch data from Dynamodb. Dataframe returned is empty: {}".format(len(df))
+                "Unable to fetch data from Dynamodb. Dataframe returned is empty: {}".format(
+                    len(df)
+                )
             )
 
     # def process_data(self, df):
@@ -92,7 +91,7 @@ class DbHelper:
     #                 # unknown item
     #                 self.unknown.append(item_name)
     #         else:
-                # self.unknown.append(item_name)
+    # self.unknown.append(item_name)
 
     # def further_processing(self, df):
     #     # computes the min , max , average price for each unique item
@@ -157,10 +156,8 @@ class DbHelper:
             return x
 
     def to_float_if_has_special_price(self, x):
-
         if x != "Special Price":
             try:
-
                 return float(x.replace("R", "").replace(",", ""))
             except AttributeError:
                 return x
@@ -168,11 +165,10 @@ class DbHelper:
             np.nan
 
     def get_color(self, x):
-        x = json.loads(x.replace("'",'"'))
+        x = json.loads(x.replace("'", '"'))
         my_dict = {}
 
-        if type(x) != float: 
-
+        if type(x) != float:
             for i in x:
                 my_dict[i.get("name")] = i.get("path")
 
@@ -182,7 +178,6 @@ class DbHelper:
 
     @staticmethod
     def get_best_buys(df, price_decrease, num):
-
         # sort price_decrease list according to the price changes
         newlist = sorted(price_decrease, key=lambda x: x.price, reverse=False)
 
@@ -205,7 +200,6 @@ class DbHelper:
 
     @staticmethod
     def get_worst_buys(df, price_increase_list, num):
-
         # sort price_decrease list according to the price changes
         newlist = sorted(price_increase_list, key=lambda x: x.price, reverse=True)
 

@@ -2,7 +2,6 @@ from website import db
 
 
 class HifiBestBuys(db.Model):
-
     __tablename__ = "hifi_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class HifiBestBuys(db.Model):
 
 
 class HifiWorstBuys(db.Model):
-
     __tablename__ = "hifi_worst_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -40,7 +38,6 @@ class HifiWorstBuys(db.Model):
 
 
 class HifiCleanDf(db.Model):
-
     __tablename__ = "hifi_clean_df"
 
     title = db.Column(db.Text)
@@ -49,7 +46,6 @@ class HifiCleanDf(db.Model):
     price = db.Column(db.Float)
 
     def __init__(self, title, price, image_url, date):
-
         self.title = title
         self.image_url = image_url
         self.date = date

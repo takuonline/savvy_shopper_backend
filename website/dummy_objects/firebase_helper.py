@@ -8,11 +8,10 @@ from datetime import datetime
 from requests.exceptions import SSLError
 import traceback
 
-class FirebaseHelper:
 
+class FirebaseHelper:
     @staticmethod
     def load_from_firebase_db(keyname, db_url, table_name):
-        
         start_date = str(datetime.now() - pd.DateOffset(months=2))
         end_date = str(datetime.now())
 
@@ -29,10 +28,12 @@ class FirebaseHelper:
 
                 ref = fdb.reference(table_name)
 
-                # response = ref.order_by_key().limit_to_first(40000).get()
-                # response = ref.get()
-
-                response  = ref.order_by_child("date").start_at(start_date).end_at(end_date).get()
+                response = (
+                    ref.order_by_child("date")
+                    .start_at(start_date)
+                    .end_at(end_date)
+                    .get()
+                )
 
                 return pd.DataFrame.from_dict(response, orient="index")
 
@@ -43,7 +44,9 @@ class FirebaseHelper:
 
             except Exception as e:
                 tb = traceback.format_exc()
-                error_message = f"Non network error -----{table_name}-----{type(e).__name__}--->{i}"
+                error_message = (
+                    f"Non network error -----{table_name}-----{type(e).__name__}--->{i}"
+                )
                 logging.debug(error_message + tb)
                 print(error_message + tb)
                 continue

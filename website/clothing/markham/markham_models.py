@@ -2,7 +2,6 @@ from website import db
 
 
 class MarkhamBestBuys(db.Model):
-
     __tablename__ = "markham_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class MarkhamBestBuys(db.Model):
 
 
 class MarkhamWorstBuys(db.Model):
-
     __tablename__ = "markham_worst_buys"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -41,7 +39,6 @@ class MarkhamWorstBuys(db.Model):
 
 
 class MarkhamCleanDf(db.Model):
-
     __tablename__ = "markham_clean_df"
 
     title = db.Column(db.Text)
@@ -54,13 +51,15 @@ class MarkhamCleanDf(db.Model):
     # brand = db.Column(db.Text)
 
     # "index", brand, colors, date, image_url, link, price, title)
-    def __init__(self,
-    #  brand, colors, 
-     date,
-    #   image_url,
-    #   link, 
-      price, title):
-
+    def __init__(
+        self,
+        #  brand, colors,
+        date,
+        #   image_url,
+        #   link,
+        price,
+        title,
+    ):
         self.title = title
         # self.image_url = image_url
         self.date = date

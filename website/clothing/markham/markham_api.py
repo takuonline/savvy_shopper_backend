@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -36,7 +36,6 @@ class MarkhamAdmin(Resource):
 
 class MarkhamClient(Resource):
     def get(self):
-
         from website.clothing.markham.markham_models import (
             MarkhamBestBuys,
             MarkhamWorstBuys,
@@ -95,7 +94,6 @@ class MarkhamGetProductData(Resource):
         df = pd.read_sql("markham_clean_df", cnx)
 
         if len(df[df["title"] == title]) != 0:
-
             current_price = df[df["title"] == title]["price"].iloc[-1]
 
             # average_price

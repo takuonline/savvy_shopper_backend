@@ -24,7 +24,6 @@ class TakealotDbHelper(DbHelper):
         DbHelper.__init__(self)
 
     def takealot_retrieve_and_clean_data(self):
-
         self.retrieve_and_clean_data(
             keyname="pc-components.json",
             db_url="https://pc-components-77a24-default-rtdb.firebaseio.com/",
@@ -43,17 +42,25 @@ class TakealotDbHelper(DbHelper):
         df["date_only"] = df["date"].dt.date
         df = df.drop_duplicates(subset=["title", "date_only"], keep=False)
 
-        df.drop(["savings", "date_only", "listing_price","brand","image_url"], axis=1, inplace=True)
+        df.drop(
+            ["savings", "date_only", "listing_price", "brand", "image_url"],
+            axis=1,
+            inplace=True,
+        )
 
         # df["image_url"] = df["image_url"].apply(lambda x: x.replace("{size}", "fb"))
 
         # df["brand"].fillna("Other")
 
-        df["title"] = df["title"].apply(lambda x: x.strip().lower() if type(x) != float else x)
+        df["title"] = df["title"].apply(
+            lambda x: x.strip().lower() if type(x) != float else x
+        )
 
         # basedir = os.path.abspath(os.path.dirname(__file__))
         # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-        cnx = create_engine(AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}).connect()
+        cnx = create_engine(
+            AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}
+        ).connect()
 
         df.to_sql("takealot_clean_df", cnx, if_exists="replace")
 
@@ -61,7 +68,6 @@ class TakealotDbHelper(DbHelper):
 
     @staticmethod
     def get_best_buys(df, price_decrease, num):
-
         # sort price_decrease list according to the price changes
         newlist = sorted(price_decrease, key=lambda x: x.price, reverse=False)
 
@@ -89,7 +95,6 @@ class TakealotDbHelper(DbHelper):
 
     @staticmethod
     def get_worst_buys(df, price_increase_list, num):
-
         # sort price_decrease list according to the price changes
         newlist = sorted(price_increase_list, key=lambda x: x.price, reverse=True)
 
@@ -100,7 +105,6 @@ class TakealotDbHelper(DbHelper):
             df_item = df[df["title"] == i.title]
 
             if len(df_item) != 0:
-
                 url = df_item["image_url"].sort_values().iloc[0]
                 product_dict = {
                     i.title: {

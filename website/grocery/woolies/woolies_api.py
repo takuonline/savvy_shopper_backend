@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -36,7 +36,6 @@ class WooliesAdmin(Resource):
 
 class WooliesClient(Resource):
     def get(self):
-
         from website.grocery.woolies.db_helper_woolies import WooliesDbHelper
         from website.grocery.woolies.woolies_models import (
             WooliesBestBuys,
@@ -47,7 +46,7 @@ class WooliesClient(Resource):
         starting_time = datetime.now()
 
         basedir = os.path.abspath(os.path.dirname(__file__))
-        path = "sqlite:///" + os.path.join(basedir, "..", "..","data.sqlite")
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
         cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
         num = 50
@@ -98,7 +97,7 @@ class WooliesGetProductData(Resource):
         title = title.replace("@forwardslash@", "/")
         logging.debug(title)
         basedir = os.path.abspath(os.path.dirname(__file__))
-        path = "sqlite:///" + os.path.join(basedir, "..","..", "data.sqlite")
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
         cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
         df = pd.read_sql("woolies_clean_df", cnx)
@@ -106,7 +105,6 @@ class WooliesGetProductData(Resource):
         logging.debug(df.head())
 
         if len(df[df["title"] == title]) != 0:
-
             current_price = df[df["title"] == title]["price"].iloc[-1]
 
             # average_price

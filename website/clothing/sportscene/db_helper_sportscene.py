@@ -10,6 +10,7 @@ from sqlalchemy import create_engine
 from website.dummy_objects.dummy_db_helper import DbHelper
 import logging
 from config.config import ClothingConfig
+
 logging.basicConfig(
     level=logging.DEBUG,
     filemode="w",
@@ -22,7 +23,6 @@ class SportsceneDbHelper(DbHelper):
         DbHelper.__init__(self)
 
     def sportscene_retrieve_and_clean_data(self):
-
         # self.retrieve_and_clean_data(
         #     keyname="e-clothing.json",
         #     db_url="https://e-clothing-2fe94-default-rtdb.firebaseio.com/",
@@ -38,28 +38,32 @@ class SportsceneDbHelper(DbHelper):
             CleanDf=SportsceneCleanDf,
         )
 
-
-         
     def clean_df(self, df):
         # cleaning the data
-        df.to_csv("sportscene.csv",index=False)
+        df.to_csv("sportscene.csv", index=False)
 
         # clean price and date
         df["price"] = df["price"].apply(
             lambda x: float(x.replace("R", "").replace(",", "").strip().split()[-1])
         )
         df["date"] = pd.to_datetime(df["date"])
-        df["title"] = df["title"].apply(lambda title: title.strip().lower() )
+        df["title"] = df["title"].apply(lambda title: title.strip().lower())
         # df["colors"] = df["colors"].apply(self.get_color)
         # remove duplicates
         df["date_only"] = df["date"].dt.date
         df = df.drop_duplicates(subset=["title", "date_only"], keep=False)
 
-        df.drop(["date_only", "second_image_url","brand","image_url","link","colors"], axis=1, inplace=True)
+        df.drop(
+            ["date_only", "second_image_url", "brand", "image_url", "link", "colors"],
+            axis=1,
+            inplace=True,
+        )
 
         # basedir = os.path.abspath(os.path.dirname(__file__))
         # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-        cnx = create_engine(ClothingConfig.DB_URI, connect_args={"check_same_thread": False}).connect()
+        cnx = create_engine(
+            ClothingConfig.DB_URI, connect_args={"check_same_thread": False}
+        ).connect()
 
         df.to_sql("sportscene_clean_df", cnx, if_exists="replace")
 
@@ -130,4 +134,3 @@ class SportsceneDbHelper(DbHelper):
     #             expensive_products_list.append(product_dict)
 
     #     return expensive_products_list
- 

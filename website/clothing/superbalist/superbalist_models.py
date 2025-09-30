@@ -2,7 +2,6 @@ from website import db
 
 
 class SuperbalistBestBuys(db.Model):
-
     __tablename__ = "superbalist_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class SuperbalistBestBuys(db.Model):
 
 
 class SuperbalistWorstBuys(db.Model):
-
     __tablename__ = "superbalist_worst_buys"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -41,7 +39,6 @@ class SuperbalistWorstBuys(db.Model):
 
 
 class SuperbalistCleanDf(db.Model):
-
     __tablename__ = "superbalist_clean_df"
 
     title = db.Column(db.Text)
@@ -53,11 +50,14 @@ class SuperbalistCleanDf(db.Model):
     # link = db.Column(db.Text)
     # designer_name = db.Column(db.Text)
 
-    def __init__(self, date,
-    #  image_url, 
-    # designer_name,
-     price, title):
-
+    def __init__(
+        self,
+        date,
+        #  image_url,
+        # designer_name,
+        price,
+        title,
+    ):
         self.title = title
         # self.image_url = image_url
         self.date = date

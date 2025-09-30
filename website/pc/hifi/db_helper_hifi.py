@@ -29,7 +29,6 @@ class HifiDbHelper(DbHelper):
         DbHelper.__init__(self)
 
     def hifi_retrieve_and_clean_data(self):
-
         self.retrieve_and_clean_data(
             keyname="pc-components.json",
             db_url="https://pc-components-77a24-default-rtdb.firebaseio.com/",
@@ -50,18 +49,21 @@ class HifiDbHelper(DbHelper):
 
         df["title"] = df["title"].apply(lambda x: x.replace("\n", ""))
 
-        df["title"] = df["title"].apply(lambda x: x.strip().lower() if type(x) != float else x)
-
+        df["title"] = df["title"].apply(
+            lambda x: x.strip().lower() if type(x) != float else x
+        )
 
         df["date_only"] = df["date"].dt.date
-        df.drop_duplicates(subset=["title", "date_only"],keep=False,inplace=True)
-        
+        df.drop_duplicates(subset=["title", "date_only"], keep=False, inplace=True)
+
         df.drop(["date_only"], axis=1, inplace=True)
 
         # basedir = os.path.abspath(os.path.dirname(__file__))
         # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
 
-        cnx = create_engine(AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}).connect()
+        cnx = create_engine(
+            AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}
+        ).connect()
 
         df.to_sql("hifi_clean_df", cnx, if_exists="replace")
 
@@ -98,14 +100,12 @@ class HifiDbHelper(DbHelper):
 
     @staticmethod
     def get_worst_buys(df, price_increase_list, num):
-
         # sort price_decrease list according to the price changes
         newlist = sorted(price_increase_list, key=lambda x: x.price, reverse=True)
 
         # get into dict format and put in list
         expensive_products_list = []
         for i in newlist[:num]:
-
             if len(df[df["title"] == i.title]) != 0:
                 try:
                     img_url = (

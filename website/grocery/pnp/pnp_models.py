@@ -2,7 +2,6 @@ from website import db
 
 
 class PnPBestBuys(db.Model):
-
     __tablename__ = "pnp_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class PnPBestBuys(db.Model):
 
 
 class PnPWorstBuys(db.Model):
-
     __tablename__ = "pnp_worst_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -40,7 +38,6 @@ class PnPWorstBuys(db.Model):
 
 
 class PnPCleanDf(db.Model):
-
     __tablename__ = "pnp_clean_df"
 
     title = db.Column(db.Text)
@@ -48,10 +45,13 @@ class PnPCleanDf(db.Model):
     date = db.Column(db.Text, primary_key=True)
     price = db.Column(db.Float)
 
-    def __init__(self, title, price,
-    #  image_url,
-     date):
-
+    def __init__(
+        self,
+        title,
+        price,
+        #  image_url,
+        date,
+    ):
         self.title = title
         # self.image_url = image_url
         self.date = date

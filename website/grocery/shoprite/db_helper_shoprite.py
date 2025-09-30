@@ -11,8 +11,8 @@ from config.config import GroceryConfig
 MONGO_DB_USERNAME = os.environ["MONGO_DB_USERNAME"]
 MONGO_DB_PASSWORD = os.environ["MONGO_DB_PASSWORD"]
 
-class ShopriteDbHelper(DbHelper):
 
+class ShopriteDbHelper(DbHelper):
     def __init__(self):
         DbHelper.__init__(self)
 
@@ -23,8 +23,8 @@ class ShopriteDbHelper(DbHelper):
             ShopriteWorstBuys,
             ShopriteCleanDf,
         )
-        
-        #create all the tables in sqlite db if not created
+
+        # create all the tables in sqlite db if not created
         db.create_all()
 
         # load data from database
@@ -45,7 +45,6 @@ class ShopriteDbHelper(DbHelper):
         # self.store_data(ShopriteBestBuys, ShopriteWorstBuys)
 
     def load_from_db(self):
-
         client = pymongo.MongoClient(
             f"mongodb+srv://{MONGO_DB_USERNAME}:{MONGO_DB_PASSWORD}@cluster0.mcpct.mongodb.net/ecommerce?retryWrites=true&w=majority"
         )
@@ -72,15 +71,19 @@ class ShopriteDbHelper(DbHelper):
         df = df.drop_duplicates(subset=["title", "date_only"], keep=False)
         df.drop("date_only", axis=1, inplace=True)
 
-        df["title"] = df["title"].apply(lambda x: x.strip().lower() if type(x) != float else x)
+        df["title"] = df["title"].apply(
+            lambda x: x.strip().lower() if type(x) != float else x
+        )
 
         # add df file to database
         # basedir = os.path.abspath(os.path.dirname(__file__))
         # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-        cnx = create_engine(GroceryConfig.DB_URI, connect_args={"check_same_thread": False}).connect()
+        cnx = create_engine(
+            GroceryConfig.DB_URI, connect_args={"check_same_thread": False}
+        ).connect()
 
-        df.drop(["_id","image_url"], axis=1).to_sql("shoprite_clean_df", cnx, if_exists="replace")
+        df.drop(["_id", "image_url"], axis=1).to_sql(
+            "shoprite_clean_df", cnx, if_exists="replace"
+        )
 
         return df
-
- 

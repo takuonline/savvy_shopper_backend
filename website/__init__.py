@@ -1,16 +1,12 @@
 from flask import Flask
-from flask_restful import Api
+from flask_restx import Api
 
 from website.grocery.shoprite.shoprite_api import (
     ShopriteAdmin,
     ShopriteClient,
     ShopriteGetProductData,
 )
-from website.grocery.pnp.pnp_api import (
-    PnPClient, 
-    PnPGetProductData, 
-    PnPAdmin
-)
+from website.grocery.pnp.pnp_api import PnPClient, PnPGetProductData, PnPAdmin
 from website.grocery.woolies.woolies_api import (
     WooliesClient,
     WooliesGetProductData,
@@ -67,6 +63,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route("/")
 def home():
     return "<h1 style={font-size:3.5rem; margin-top: 7rem; text-align: center; }>Nothing to see here😎</h1>"
@@ -80,7 +77,13 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
-api = Api(app)
+api = Api(
+    app,
+    version="1.0",
+    title="Product Comparison API",
+    description="Multi-retailer product price data API",
+    doc="/docs",  # Swagger UI will be
+)
 
 
 #####################
@@ -154,7 +157,9 @@ api.add_resource(ShopriteGetProductData, "/get-product-data/<string:title>")
 api.add_resource(PnPGetProductData, "/pnp-get-product-data/<string:title>")
 api.add_resource(WooliesGetProductData, "/woolies-get-product-data/<string:title>")
 
-api.add_resource(ComputermaniaGetProductData, "/computermania-get-product-data/<string:title>")
+api.add_resource(
+    ComputermaniaGetProductData, "/computermania-get-product-data/<string:title>"
+)
 api.add_resource(HifiGetProductData, "/hifi-get-product-data/<string:title>")
 api.add_resource(TakealotGetProductData, "/takealot-get-product-data/<string:title>")
 api.add_resource(GameGetProductData, "/game-get-product-data/<string:title>")
@@ -162,7 +167,14 @@ api.add_resource(MakroGetProductData, "/makro-get-product-data/<string:title>")
 
 api.add_resource(FoschiniGetProductData, "/foschini-get-product-data/<string:title>")
 api.add_resource(MarkhamGetProductData, "/markham-get-product-data/<string:title>")
-api.add_resource(SportsceneGetProductData, "/sportscene-get-product-data/<string:title>")
-api.add_resource(WoolworthsClothingGetProductData,"/woolworths-clothing-get-product-data/<string:title>",)
-api.add_resource(SuperbalistGetProductData, "/superbalist-get-product-data/<string:title>")
+api.add_resource(
+    SportsceneGetProductData, "/sportscene-get-product-data/<string:title>"
+)
+api.add_resource(
+    WoolworthsClothingGetProductData,
+    "/woolworths-clothing-get-product-data/<string:title>",
+)
+api.add_resource(
+    SuperbalistGetProductData, "/superbalist-get-product-data/<string:title>"
+)
 api.add_resource(MrpGetProductData, "/mrp-get-product-data/<string:title>")

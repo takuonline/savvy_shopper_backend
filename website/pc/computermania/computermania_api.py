@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -32,7 +32,6 @@ class ComputermaniaAdmin(Resource):
 
 class ComputermaniaClient(Resource):
     def get(self):
-
         from website.pc.computermania.computermania_models import (
             ComputermaniaBestBuys,
             ComputermaniaWorstBuys,
@@ -97,7 +96,6 @@ class ComputermaniaGetProductData(Resource):
         df = pd.read_sql("computermania_clean_df", cnx)
 
         if len(df[df["title"] == title]) != 0:
-
             current_price = df[df["title"] == title]["price"].iloc[-1]
 
             # average_price

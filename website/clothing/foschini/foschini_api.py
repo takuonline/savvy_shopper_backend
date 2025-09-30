@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -22,13 +22,12 @@ class FoschiniAdmin(Resource):
 
         starting_time = datetime.now()
         # try:
-        
+
         FoschiniDbHelper().foschini_retrieve_and_clean_data()
         # except Exception as e:
         #     finish_time = datetime.now()
 
         #     time = finish_time - starting_time
-
 
         #     return {
         #         "response": "error",
@@ -52,7 +51,6 @@ class FoschiniAdmin(Resource):
 
 class FoschiniClient(Resource):
     def get(self):
-
         from website.clothing.foschini.db_helper_foschini import FoschiniDbHelper
         from website.clothing.foschini.foschini_models import (
             FoschiniBestBuys,
@@ -108,7 +106,6 @@ class FoschiniGetProductData(Resource):
         df = pd.read_sql("foschini_clean_df", cnx)
 
         if len(df[df["title"] == title]) != 0:
-
             current_price = df[df["title"] == title]["price"].iloc[-1]
 
             # average_price

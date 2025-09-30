@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -7,7 +7,7 @@ from datetime import datetime
 
 from website.grocery.shoprite.db_helper_shoprite import ShopriteDbHelper
 from website.dummy_objects.product_change_value import ProductChangeValue
- 
+
 import json
 import logging
 

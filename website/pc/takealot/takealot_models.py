@@ -2,7 +2,6 @@ from website import db
 
 
 class TakealotBestBuys(db.Model):
-
     __tablename__ = "takealot_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class TakealotBestBuys(db.Model):
 
 
 class TakealotWorstBuys(db.Model):
-
     __tablename__ = "takealot_worst_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -40,7 +38,6 @@ class TakealotWorstBuys(db.Model):
 
 
 class TakealotCleanDf(db.Model):
-
     __tablename__ = "takealot_clean_df"
 
     title = db.Column(db.Text)
@@ -49,10 +46,13 @@ class TakealotCleanDf(db.Model):
     # brand = db.Column(db.Text)
     price = db.Column(db.Float)
 
-    def __init__(self, title, price, 
-    # image_url, brand, 
-    date):
-
+    def __init__(
+        self,
+        title,
+        price,
+        # image_url, brand,
+        date,
+    ):
         self.title = title
         # self.image_url = image_url
         self.date = date

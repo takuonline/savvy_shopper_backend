@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -13,6 +13,7 @@ logging.basicConfig(
     filemode="w",
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
+
 
 class MakroAdmin(Resource):
     def get(self):
@@ -36,7 +37,6 @@ class MakroAdmin(Resource):
 
 class MakroClient(Resource):
     def get(self):
-
         from website.pc.makro.makro_models import MakroBestBuys, MakroWorstBuys
         from website.pc.makro.db_helper_makro import MakroDbHelper
 
@@ -49,7 +49,6 @@ class MakroClient(Resource):
 
         cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
-    
         df = pd.read_sql("makro_clean_df", cnx)
 
         print(df.head())
@@ -93,7 +92,6 @@ class MakroGetProductData(Resource):
         df = pd.read_sql("makro_clean_df", cnx)
 
         if len(df[df["title"] == title]) != 0:
-
             current_price = df[df["title"] == title]["price"].iloc[-1]
 
             # average_price

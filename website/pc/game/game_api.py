@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -13,6 +13,7 @@ logging.basicConfig(
     filemode="w",
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
+
 
 class GameAdmin(Resource):
     def get(self):
@@ -36,7 +37,6 @@ class GameAdmin(Resource):
 
 class GameClient(Resource):
     def get(self):
-
         from website.pc.game.game_models import GameBestBuys, GameWorstBuys
         from website.pc.game.db_helper_game import GameDbHelper
 
@@ -49,7 +49,6 @@ class GameClient(Resource):
 
         cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
-    
         df = pd.read_sql("game_clean_df", cnx)
 
         print(df.head())
@@ -93,7 +92,6 @@ class GameGetProductData(Resource):
         df = pd.read_sql("game_clean_df", cnx)
 
         if len(df[df["title"] == title]) != 0:
-
             current_price = df[df["title"] == title]["price"].iloc[-1]
 
             # average_price

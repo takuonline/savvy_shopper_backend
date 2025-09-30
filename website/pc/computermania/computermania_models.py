@@ -2,7 +2,6 @@ from website import db
 
 
 class ComputermaniaBestBuys(db.Model):
-
     __tablename__ = "computermania_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class ComputermaniaBestBuys(db.Model):
 
 
 class ComputermaniaWorstBuys(db.Model):
-
     __tablename__ = "computermania_worst_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -40,7 +38,6 @@ class ComputermaniaWorstBuys(db.Model):
 
 
 class ComputermaniaCleanDf(db.Model):
-
     __tablename__ = "computermania_clean_df"
 
     title = db.Column(db.Text)
@@ -49,7 +46,6 @@ class ComputermaniaCleanDf(db.Model):
     price = db.Column(db.Float)
 
     def __init__(self, title, price, image_url, date):
-
         self.title = title
         self.image_url = image_url
         self.date = date

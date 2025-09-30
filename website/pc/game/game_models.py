@@ -2,7 +2,6 @@ from website import db
 
 
 class GameBestBuys(db.Model):
-
     __tablename__ = "game_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class GameBestBuys(db.Model):
 
 
 class GameWorstBuys(db.Model):
-
     __tablename__ = "game_worst_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -37,7 +35,6 @@ class GameWorstBuys(db.Model):
 
 
 class GameCleanDf(db.Model):
-
     __tablename__ = "game_clean_df"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -47,7 +44,6 @@ class GameCleanDf(db.Model):
     brand = db.Column(db.Text)
 
     def __init__(self, brand, date, price, image_url, title):
-
         self.title = title
         self.image_url = image_url
         self.date = date

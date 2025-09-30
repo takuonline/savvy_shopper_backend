@@ -24,7 +24,6 @@ class GameDbHelper(DbHelper):
         DbHelper.__init__(self)
 
     def game_retrieve_and_clean_data(self):
-
         self.dynamodb_retrieve_and_clean_data(
             table_name="game",
             BestBuys=GameBestBuys,
@@ -36,23 +35,26 @@ class GameDbHelper(DbHelper):
         # cleaning the data
 
         df["date"] = pd.to_datetime(df["date"])
-        df["title"] = df["title"].apply(lambda x: x.strip().lower() if type(x) != float else x)
+        df["title"] = df["title"].apply(
+            lambda x: x.strip().lower() if type(x) != float else x
+        )
         df["brand"] = df["brand"].apply(lambda x: x.strip().lower())
         df["image_url"] = df["image_url"].apply(lambda x: "https://www.game.co.za" + x)
- 
 
         df["date_only"] = df["date"].dt.date
-        df.drop_duplicates(subset=["title", "date_only"],keep = False,inplace=True)
+        df.drop_duplicates(subset=["title", "date_only"], keep=False, inplace=True)
         df.drop(["date_only"], axis=1, inplace=True)
 
         df.dropna(subset=["price"], inplace=True)
-        df["price"] = df["price"].apply(lambda x: float(x.replace("R","").replace(",","").split()[-1]))
-
-        
+        df["price"] = df["price"].apply(
+            lambda x: float(x.replace("R", "").replace(",", "").split()[-1])
+        )
 
         # basedir = os.path.abspath(os.path.dirname(__file__))
         # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-        cnx = create_engine(AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}).connect()
+        cnx = create_engine(
+            AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}
+        ).connect()
 
         df.to_sql("game_clean_df", cnx, if_exists="replace")
 

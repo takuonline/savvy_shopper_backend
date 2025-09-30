@@ -2,7 +2,6 @@ from website import db
 
 
 class FoschiniBestBuys(db.Model):
-
     __tablename__ = "foschini_best_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -21,7 +20,6 @@ class FoschiniBestBuys(db.Model):
 
 
 class FoschiniWorstBuys(db.Model):
-
     __tablename__ = "foschini_worst_buys"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -40,7 +38,6 @@ class FoschiniWorstBuys(db.Model):
 
 
 class FoschiniCleanDf(db.Model):
-
     __tablename__ = "foschini_clean_df"
 
     title = db.Column(db.Text)
@@ -53,12 +50,14 @@ class FoschiniCleanDf(db.Model):
     # brand = db.Column(db.Text)
 
     # "index", brand, colors, date, image_url, link, price, title)
-    def __init__(self,
-    #  brand, colors,
-      date,
-    #    image_url, link,
-        price, title):
-
+    def __init__(
+        self,
+        #  brand, colors,
+        date,
+        #    image_url, link,
+        price,
+        title,
+    ):
         self.title = title
         # self.image_url = image_url
         self.date = date

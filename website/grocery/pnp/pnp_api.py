@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -37,7 +37,6 @@ class PnPAdmin(Resource):
 
 class PnPClient(Resource):
     def get(self):
-
         # from website.pnp.db_helper_pnp import get_best_buys,get_worst_buys
         from website.grocery.pnp.pnp_models import PnPBestBuys, PnPWorstBuys
         from website.grocery.pnp.db_helper_pnp import PnPDbHelper
@@ -114,7 +113,6 @@ class PnPGetProductData(Resource):
         logging.debug(df.head())
 
         if len(df[df["title"] == title]) != 0:
-
             current_price = df[df["title"] == title]["price"].iloc[-1]
 
             # average_price

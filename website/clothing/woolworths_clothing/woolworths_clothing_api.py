@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -39,7 +39,6 @@ class WoolworthsClothingAdmin(Resource):
 
 class WoolworthsClothingClient(Resource):
     def get(self):
-
         from website.clothing.woolworths_clothing.woolworths_clothing_models import (
             WoolworthsClothingBestBuys,
             WoolworthsClothingWorstBuys,
@@ -95,7 +94,6 @@ class WoolworthsClothingGetProductData(Resource):
         df = pd.read_sql("woolworths_clothing_clean_df", cnx)
 
         if len(df[df["title"] == title]) != 0:
-
             current_price = df[df["title"] == title]["price"].iloc[-1]
 
             # average_price
