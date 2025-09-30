@@ -1,8 +1,26 @@
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+.aws/
+
+keys/
+*.json
+*.log
+*.txt
+api_logs.*
+update_data_log/
+updates/
+updates_logs/
+
 *.ipynb
 data.sqlite
-api_logs.txt
-*.sqlite
-*.csv
+pnp_data.csv
+api_logs.log
+
+keys/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
