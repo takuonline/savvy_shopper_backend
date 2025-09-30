@@ -2,7 +2,15 @@
 
 A comprehensive REST API backend for the Savvy Shopper multi-retailer price comparison platform. This Flask-based service aggregates product data from 12 different South African retailers across three major categories: Groceries, Clothing, and PC Components.
 
-<video src="static/savvy-shopper-demo-1_small1.mp4" controls autoplay loop muted width="640" height="480">
+## Demo
+
+This backend powers two applications, a flutter mobile app and a chrome extension
+
+ <video src="static/savvy-shopper-demo-1_small1.mp4" controls autoplay loop muted width="640" height="480">
+ Your browser does not support the video tag.
+</video>
+
+<video src="static/savvy savvy-shopper-extension-1-small1.mp4" controls autoplay loop muted width="640" height="480">
   Your browser does not support the video tag.
 </video>
 
