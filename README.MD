@@ -4,15 +4,22 @@ A comprehensive REST API backend for the Savvy Shopper multi-retailer price comp
 
 ## Demo
 
-This backend powers two applications, a flutter mobile app and a chrome extension
+This backend powers two applications: a Flutter mobile app and a Chrome extension.
 
- <video src="static/savvy-shopper-demo-1_small1.mp4" controls autoplay loop muted width="640" height="480">
- Your browser does not support the video tag.
-</video>
+<div align="center">
 
-<video src="static/savvy savvy-shopper-extension-1-small1.mp4" controls autoplay loop muted width="640" height="480">
+### 📱 Mobile App
+<video src="static/savvy-shopper-demo-1_small1.mp4" controls autoplay loop muted width="300" style="border: 8px solid #1a1a1a; border-radius: 24px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); margin: 20px;">
   Your browser does not support the video tag.
 </video>
+
+### 🌐 Chrome Extension
+<video src="static/savvy-shopper-extension-1-small1.mp4" controls autoplay loop muted width="640" style="border: 2px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin: 20px;">
+  Your browser does not support the video tag.
+</video>
+
+</div>
+
 
 ## 🎯 Project Overview
 
