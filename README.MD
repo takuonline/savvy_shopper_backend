@@ -11,11 +11,17 @@ Savvy Shopper is a full-stack price comparison application that empowers consume
 ## 🏗️ Architecture Overview
 
 ```
-Web Scrapers (Scrapy/Scrapyd) → Cloud Databases (DynamoDB/MongoDB/Firebase)
+Web Scrapers (Scrapy/Scrapyd) # run everyday
+    ↓
+Cloud Databases (DynamoDB/MongoDB/Firebase)
+    ↓
+ETL pipeline(simple script that downloads, cleans and uploads data)
+    ↓
+SQLlite database
     ↓
 Flask REST API (This Repository)
-    ↓
-Mobile App (Flutter) + Chrome Extension
+    ↓                          ↓
+Mobile App (Flutter)  +  Chrome Extension
 ```
 
 ## ✨ Features
@@ -137,7 +143,7 @@ nothing_to_see_here/
 │   └── response_to_update.txt
 └── installation_files/
     ├── Procfile                    # Heroku deployment config
-    └── requirements.txt            # Production dependencies
+    └── requirements.txt            # python dependencies
 ```
 
 ## 🚀 Installation & Setup
@@ -410,4 +416,6 @@ For inquiries about this project or collaboration opportunities, please reach ou
 
 ---
 
-**Built with ❤️ by Taku** | Flask + Python + AWS + GCP | 2023
+**Built with ❤️ by Taku**
+
+Flask + Python + AWS + Firebase | 2020

@@ -14,6 +14,7 @@ api_logs.*
 update_data_log/
 updates/
 updates_logs/
+readme.txt
 
 *.ipynb
 data.sqlite
