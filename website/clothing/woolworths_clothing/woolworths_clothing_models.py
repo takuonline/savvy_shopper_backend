@@ -42,7 +42,7 @@ class WoolworthsClothingCleanDf(db.Model):
     __tablename__ = "woolworths_clothing_clean_df"
 
     title = db.Column(db.Text)
-    # image_url = db.Column(db.Text)
+    image_url = db.Column(db.Text)
     date = db.Column(db.Text, primary_key=True)
     price = db.Column(db.Float)
 
@@ -51,5 +51,5 @@ class WoolworthsClothingCleanDf(db.Model):
         self.date = date
         self.price = price
 
-    # def __repr__(self):
-    #     return f"{self.title}, {self.date}, {self.price} \n"
+    def __repr__(self):
+        return f"{self.title}, {self.date}, {self.price} \n"

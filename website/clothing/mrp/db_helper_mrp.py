@@ -7,7 +7,6 @@ from website.clothing.mrp.mrp_models import MrpBestBuys, MrpWorstBuys, MrpCleanD
 from website.dummy_objects.dummy_db_helper import DbHelper
 
 import logging
-from config.config import ClothingConfig
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -41,15 +40,12 @@ class MrpDbHelper(DbHelper):
         # df["image_url"] = df["image_url"].apply(lambda x: x.replace("https://www.game.co.za",""))
 
         df["title"] = df["title"].apply(
-            lambda x: x.replace("<span>", "").replace("</span>", "").strip().lower()
+            lambda x: x.replace("<span>", "").replace("</span>", "").strip()
         )
-        df.drop(["brand"], axis=1, inplace=True)
 
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-        cnx = create_engine(
-            ClothingConfig.DB_URI, connect_args={"check_same_thread": False}
-        ).connect()
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
         df.to_sql("mrp_clean_df", cnx, if_exists="replace")
 

@@ -10,8 +10,6 @@ from sqlalchemy import create_engine
 from website.dummy_objects.dummy_db_helper import DbHelper
 import logging
 
-from config.config import ClothingConfig
-
 logging.basicConfig(
     level=logging.DEBUG,
     filemode="w",
@@ -41,25 +39,17 @@ class MarkhamDbHelper(DbHelper):
             lambda x: float(x.replace("R", "").replace(",", "").strip().split()[-1])
         )
         df["date"] = pd.to_datetime(df["date"])
-        # df["colors"] = df["colors"].apply(self.get_color)
+        df["colors"] = df["colors"].apply(self.get_color)
 
         # remove duplicates
         df["date_only"] = df["date"].dt.date
         df = df.drop_duplicates(subset=["title", "date_only"], keep=False)
 
-        df.drop(
-            ["date_only", "second_image_url", "brand", "image_url", "link", "colors"],
-            axis=1,
-            inplace=True,
-        )
-        df["title"] = df["title"].apply(lambda title: title.strip().lower())
+        df.drop(["date_only", "second_image_url"], axis=1, inplace=True)
 
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-
-        cnx = create_engine(
-            ClothingConfig.DB_URI, connect_args={"check_same_thread": False}
-        ).connect()
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
         df.to_sql("markham_clean_df", cnx, if_exists="replace")
 

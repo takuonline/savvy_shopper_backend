@@ -9,7 +9,7 @@ from website.pc.takealot.takealot_models import (
 )
 from sqlalchemy import create_engine
 from website.dummy_objects.dummy_db_helper import DbHelper
-from config.config import AccessoriesConfig
+
 import logging
 
 logging.basicConfig(
@@ -42,25 +42,15 @@ class TakealotDbHelper(DbHelper):
         df["date_only"] = df["date"].dt.date
         df = df.drop_duplicates(subset=["title", "date_only"], keep=False)
 
-        df.drop(
-            ["savings", "date_only", "listing_price", "brand", "image_url"],
-            axis=1,
-            inplace=True,
-        )
+        df.drop(["savings", "date_only", "listing_price"], axis=1, inplace=True)
 
-        # df["image_url"] = df["image_url"].apply(lambda x: x.replace("{size}", "fb"))
+        df["image_url"] = df["image_url"].apply(lambda x: x.replace("{size}", "fb"))
 
-        # df["brand"].fillna("Other")
+        df["brand"].fillna("Other")
 
-        df["title"] = df["title"].apply(
-            lambda x: x.strip().lower() if type(x) != float else x
-        )
-
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-        cnx = create_engine(
-            AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}
-        ).connect()
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
         df.to_sql("takealot_clean_df", cnx, if_exists="replace")
 

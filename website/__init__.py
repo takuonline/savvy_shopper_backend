@@ -85,7 +85,6 @@ api = Api(
     doc="/docs",  # Swagger UI will be
 )
 
-
 #####################
 # Groceries
 #####################

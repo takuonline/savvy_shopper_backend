@@ -42,27 +42,20 @@ class SuperbalistCleanDf(db.Model):
     __tablename__ = "superbalist_clean_df"
 
     title = db.Column(db.Text)
-    # image_url = db.Column(db.Text)
+    image_url = db.Column(db.Text)
     date = db.Column(db.Text, primary_key=True)
     price = db.Column(db.Float)
 
     # colors = db.Column(db.Text)
     # link = db.Column(db.Text)
-    # designer_name = db.Column(db.Text)
+    designer_name = db.Column(db.Text)
 
-    def __init__(
-        self,
-        date,
-        #  image_url,
-        # designer_name,
-        price,
-        title,
-    ):
+    def __init__(self, date, image_url, designer_name, price, title):
         self.title = title
-        # self.image_url = image_url
+        self.image_url = image_url
         self.date = date
         self.price = price
-        # self.designer_name = designer_name
+        self.designer_name = designedesigner_namer
 
-    # def __repr__(self):
-    #     return f"{self.title}, {self.date}, {self.price} \n"
+    def __repr__(self):
+        return f"{self.title}, {self.image_url}, {self.date}, {self.price} \n"

@@ -3,8 +3,6 @@ import pandas as pd
 from website.grocery.pnp.pnp_models import PnPBestBuys, PnPWorstBuys, PnPCleanDf
 from sqlalchemy import create_engine
 
-from config.config import GroceryConfig
-
 from website.dummy_objects.dummy_db_helper import DbHelper
 import logging
 
@@ -44,29 +42,23 @@ class PnPDbHelper(DbHelper):
         df["date_only"] = df["date"].dt.date
         df = df.drop_duplicates(subset=["title", "date_only"], keep=False)
 
-        df.drop(
-            [
-                "date_only",
-                "image_url",
-            ],
-            axis=1,
-            inplace=True,
-        )
+        df.drop("date_only", axis=1, inplace=True)
 
-        df["title"] = df["title"].apply(
-            lambda x: x.strip().lower() if type(x) != float else x
-        )
-
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-
-        cnx = create_engine(
-            GroceryConfig.DB_URI, connect_args={"check_same_thread": False}
-        ).connect()
+        # not able to multiprocess this
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path).connect()
 
         df.to_sql("pnp_clean_df", cnx, if_exists="replace")
 
         return df
+
+    def store_df(self, df):
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path).connect()
+
+        df.to_sql("pnp_clean_df", cnx, if_exists="replace")
 
     @staticmethod
     def get_best_buys(df, price_decrease, num):

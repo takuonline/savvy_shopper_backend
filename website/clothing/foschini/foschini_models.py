@@ -41,30 +41,23 @@ class FoschiniCleanDf(db.Model):
     __tablename__ = "foschini_clean_df"
 
     title = db.Column(db.Text)
-    # image_url = db.Column(db.Text)
+    image_url = db.Column(db.Text)
     date = db.Column(db.Text, primary_key=True)
     price = db.Column(db.Float)
 
-    # colors = db.Column(db.Text)
-    # link = db.Column(db.Text)
-    # brand = db.Column(db.Text)
+    colors = db.Column(db.Text)
+    link = db.Column(db.Text)
+    brand = db.Column(db.Text)
 
     # "index", brand, colors, date, image_url, link, price, title)
-    def __init__(
-        self,
-        #  brand, colors,
-        date,
-        #    image_url, link,
-        price,
-        title,
-    ):
+    def __init__(self, brand, colors, date, image_url, link, price, title):
         self.title = title
-        # self.image_url = image_url
+        self.image_url = image_url
         self.date = date
         self.price = price
-        # self.colors = colors
-        # self.link = link
-        # self.brand = brand
+        self.colors = colors
+        self.link = link
+        self.brand = brand
 
-    # def __repr__(self):
-    #     return f"{self.title}, {self.image_url}, {self.date}, {self.price} \n"
+    def __repr__(self):
+        return f"{self.title}, {self.image_url}, {self.date}, {self.price} \n"

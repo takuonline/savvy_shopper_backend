@@ -8,7 +8,7 @@ from website.clothing.superbalist.superbalist_models import (
     SuperbalistCleanDf,
 )
 from sqlalchemy import create_engine
-from config.config import ClothingConfig
+
 from website.dummy_objects.dummy_db_helper import DbHelper
 
 import logging
@@ -52,12 +52,11 @@ class SuperbalistDbHelper(DbHelper):
         df["date_only"] = df["date"].dt.date
         df = df.drop_duplicates(subset=["title", "date_only"], keep=False)
 
-        # df["image_url"] = df["image_url_2"].apply(
-        #     lambda x: x.format(size="300x432/", quality="75", extension="jpg")
-        #     if type(x) is type("s")
-        #     else x
-        # )
-        df["title"] = df["title"].apply(lambda title: title.strip().lower())
+        df["image_url"] = df["image_url_2"].apply(
+            lambda x: x.format(size="300x432/", quality="75", extension="jpg")
+            if type(x) is type("s")
+            else x
+        )
 
         df.drop(
             [
@@ -68,18 +67,14 @@ class SuperbalistDbHelper(DbHelper):
                 "max_price",
                 "discount",
                 "image_url_2",
-                "image_url",
-                "designer_name",
             ],
             axis=1,
             inplace=True,
         )
 
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-        cnx = create_engine(
-            ClothingConfig.DB_URI, connect_args={"check_same_thread": False}
-        ).connect()
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
         df.to_sql("superbalist_clean_df", cnx, if_exists="replace")
 

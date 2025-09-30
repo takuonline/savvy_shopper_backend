@@ -42,20 +42,14 @@ class MrpCleanDf(db.Model):
     # image_url = db.Column(db.Text)
     date = db.Column(db.Text, primary_key=True)
     price = db.Column(db.Float)
-    # brand = db.Column(db.Text)
+    brand = db.Column(db.Text)
 
-    def __init__(
-        self,
-        #  brand,
-        date,
-        price,
-        title,
-    ):
+    def __init__(self, brand, date, price, title):
         self.title = title
         # self.image_url = image_url
         self.date = date
         self.price = price
-        # self.brand = brand
+        self.brand = brand
 
     def __repr__(self):
         return f"{self.title},  {self.date}, {self.price} \n"

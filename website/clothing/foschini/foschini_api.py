@@ -7,7 +7,6 @@ from datetime import datetime
 
 from website.dummy_objects.product_change_value import ProductChangeValue
 import logging
-import traceback
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -22,20 +21,11 @@ class FoschiniAdmin(Resource):
 
         starting_time = datetime.now()
         # try:
-
         FoschiniDbHelper().foschini_retrieve_and_clean_data()
         # except Exception as e:
-        #     finish_time = datetime.now()
-
-        #     time = finish_time - starting_time
-
         #     return {
         #         "response": "error",
-        #         "starting time": str(starting_time),
-        #         "finishing time": str(finish_time),
-        #         "time":time,
-        #         "tb":traceback.format_exc(),
-        #         "description": "Something went wrong fetching data from firebase. Please check the db connection",
+        #         "description": "Something went wrong fetching data from dynamodb. Please check the db connection",
         #     }
         finish_time = datetime.now()
 

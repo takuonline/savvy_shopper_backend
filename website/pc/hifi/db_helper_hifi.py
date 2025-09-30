@@ -1,16 +1,12 @@
 import os
-
 import pandas as pd
 import numpy as np
 from website import db
 from website.pc.hifi.hifi_models import HifiBestBuys, HifiWorstBuys, HifiCleanDf
 from sqlalchemy import create_engine
-
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db as fdb
-
-from config.config import AccessoriesConfig
 
 from website.dummy_objects.product_change_value import ProductChangeValue
 from website.dummy_objects.dummy_db_helper import DbHelper
@@ -49,21 +45,14 @@ class HifiDbHelper(DbHelper):
 
         df["title"] = df["title"].apply(lambda x: x.replace("\n", ""))
 
-        df["title"] = df["title"].apply(
-            lambda x: x.strip().lower() if type(x) != float else x
-        )
-
         df["date_only"] = df["date"].dt.date
         df.drop_duplicates(subset=["title", "date_only"], keep=False, inplace=True)
 
         df.drop(["date_only"], axis=1, inplace=True)
 
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-
-        cnx = create_engine(
-            AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}
-        ).connect()
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
         df.to_sql("hifi_clean_df", cnx, if_exists="replace")
 

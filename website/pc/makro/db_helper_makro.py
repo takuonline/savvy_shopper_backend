@@ -7,8 +7,6 @@ from website import db
 from website.pc.makro.makro_models import MakroBestBuys, MakroWorstBuys, MakroCleanDf
 import logging
 
-from config.config import AccessoriesConfig
-
 logging.basicConfig(
     level=logging.DEBUG,
     filemode="w",
@@ -41,18 +39,16 @@ class MakroDbHelper(DbHelper):
             lambda x: x.replace("https://www.game.co.za", "")
         )
         df["title"] = df["title"].apply(
-            lambda x: x.replace("<span>", "").replace("</span>", "").strip().lower()
+            lambda x: x.replace("<span>", "").replace("</span>", "").strip()
         )
 
         df["date_only"] = df["date"].dt.date
         df.drop_duplicates(subset=["title", "date_only"], keep=False, inplace=True)
         df.drop(["date_only"], axis=1, inplace=True)
 
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-        cnx = create_engine(
-            AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}
-        ).connect()
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
         df.to_sql("makro_clean_df", cnx, if_exists="replace")
 

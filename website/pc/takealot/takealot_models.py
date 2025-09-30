@@ -41,23 +41,17 @@ class TakealotCleanDf(db.Model):
     __tablename__ = "takealot_clean_df"
 
     title = db.Column(db.Text)
-    # image_url = db.Column(db.Text)
+    image_url = db.Column(db.Text)
     date = db.Column(db.Text, primary_key=True)
-    # brand = db.Column(db.Text)
+    brand = db.Column(db.Text)
     price = db.Column(db.Float)
 
-    def __init__(
-        self,
-        title,
-        price,
-        # image_url, brand,
-        date,
-    ):
+    def __init__(self, title, price, image_url, brand, date):
         self.title = title
-        # self.image_url = image_url
+        self.image_url = image_url
         self.date = date
         self.price = price
-        # self.brand = brand
+        self.brand = brand
 
     def __repr__(self):
         return f"{self.title}, {self.image_url}, {self.date}, {self.price} , {self.brand} \n"

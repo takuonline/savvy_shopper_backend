@@ -41,21 +41,15 @@ class PnPCleanDf(db.Model):
     __tablename__ = "pnp_clean_df"
 
     title = db.Column(db.Text)
-    # image_url = db.Column(db.Text)
+    image_url = db.Column(db.Text)
     date = db.Column(db.Text, primary_key=True)
     price = db.Column(db.Float)
 
-    def __init__(
-        self,
-        title,
-        price,
-        #  image_url,
-        date,
-    ):
+    def __init__(self, title, price, image_url, date):
         self.title = title
-        # self.image_url = image_url
+        self.image_url = image_url
         self.date = date
         self.price = price
 
     def __repr__(self):
-        return f"{self.title}, {self.date}, {self.price} \n"
+        return f"{self.title}, {self.image_url}, {self.date}, {self.price} \n"

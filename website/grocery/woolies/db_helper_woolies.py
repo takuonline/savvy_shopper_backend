@@ -11,10 +11,6 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db as fdb
 
-
-from config.config import GroceryConfig
-
-
 from website.dummy_objects.product_change_value import ProductChangeValue
 from website.dummy_objects.dummy_db_helper import DbHelper
 import logging
@@ -61,10 +57,6 @@ class WooliesDbHelper(DbHelper):
             inplace=True,
         )
 
-        df["title"] = df["title"].apply(
-            lambda x: x.strip().lower() if type(x) != float else x
-        )
-
         df["date_only"] = pd.to_datetime(df["date"].dt.date)
 
         clean_df = df.drop_duplicates(subset=["title", "date_only"], keep=False)
@@ -77,10 +69,10 @@ class WooliesDbHelper(DbHelper):
 
         # df["price"] = df["price"].apply(lambda x:  x if (type(x)==float) else float(x.strip().replace("R","").replace(",","")) )
 
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..","..", "data.sqlite")
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path).connect()
 
-        cnx = create_engine(GroceryConfig.DB_URI).connect()
         clean_df.to_sql("woolies_clean_df", cnx, if_exists="replace")
         return clean_df
 

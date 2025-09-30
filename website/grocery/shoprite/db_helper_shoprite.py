@@ -4,8 +4,7 @@ import pymongo
 from sqlalchemy import create_engine
 from website.dummy_objects.dummy_db_helper import DbHelper
 from datetime import datetime
-
-from config.config import GroceryConfig
+import numpy as np
 
 
 MONGO_DB_USERNAME = os.environ["MONGO_DB_USERNAME"]
@@ -37,12 +36,12 @@ class ShopriteDbHelper(DbHelper):
         modified_df = self.clean_df(df)
 
         # calculate the store features from df
-        # self.process_data(modified_df)
+        self.process_data(modified_df)
 
-        # self.further_processing(modified_df)
+        self.further_processing(modified_df)
 
         # store the processed data
-        # self.store_data(ShopriteBestBuys, ShopriteWorstBuys)
+        self.store_data(ShopriteBestBuys, ShopriteWorstBuys)
 
     def load_from_db(self):
         client = pymongo.MongoClient(
@@ -62,28 +61,32 @@ class ShopriteDbHelper(DbHelper):
         df = df[df["date"] >= start_date]
 
         # format price data
-        df["price"] = df["price"].apply(
-            lambda x: float((x.strip()).replace(",", "").replace("R", "").split()[-1])
-        )
+        df["price"] = df["price"].apply(self.to_float)
 
         # remove duplicates
         df["date_only"] = df["date"].dt.date
         df = df.drop_duplicates(subset=["title", "date_only"], keep=False)
         df.drop("date_only", axis=1, inplace=True)
 
-        df["title"] = df["title"].apply(
-            lambda x: x.strip().lower() if type(x) != float else x
-        )
-
         # add df file to database
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-        cnx = create_engine(
-            GroceryConfig.DB_URI, connect_args={"check_same_thread": False}
-        ).connect()
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
-        df.drop(["_id", "image_url"], axis=1).to_sql(
-            "shoprite_clean_df", cnx, if_exists="replace"
-        )
+        df.drop("_id", axis=1).to_sql("shoprite_clean_df", cnx, if_exists="replace")
 
         return df
+
+    def to_float(self, x):
+        if x:
+            try:
+                x = float((x.strip()).replace(",", "").replace("R", "").split()[-1])
+
+            except ValueError:
+                print("Values of x")
+                print(x)
+
+                return np.nan
+
+        else:
+            return x

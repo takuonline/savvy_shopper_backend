@@ -28,6 +28,9 @@ class FirebaseHelper:
 
                 ref = fdb.reference(table_name)
 
+                # response = ref.order_by_key().limit_to_first(40000).get()
+                # response = ref.get()
+
                 response = (
                     ref.order_by_child("date")
                     .start_at(start_date)

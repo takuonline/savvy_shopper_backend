@@ -12,8 +12,6 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db as fdb
 
-from config.config import AccessoriesConfig
-
 from website.dummy_objects.product_change_value import ProductChangeValue
 from website.dummy_objects.dummy_db_helper import DbHelper
 from website.dummy_objects.firebase_helper import FirebaseHelper
@@ -48,7 +46,7 @@ class ComputermaniaDbHelper(DbHelper):
         df["price"] = df["price"].apply(self.to_float_if_has_special_price)
 
         df["title"] = df["title"].apply(
-            lambda x: x.replace("\n", "").strip().lower() if type(x) != float else x
+            lambda x: x.replace("\n", "") if type(x) != float else x
         )
 
         df["image_url"] = df["image"]
@@ -60,12 +58,9 @@ class ComputermaniaDbHelper(DbHelper):
 
         df.drop(["image", "date_only"], axis=1, inplace=True)
 
-        # basedir = os.path.abspath(os.path.dirname(__file__))
-        # path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
-
-        cnx = create_engine(
-            AccessoriesConfig.DB_URI, connect_args={"check_same_thread": False}
-        ).connect()
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        path = "sqlite:///" + os.path.join(basedir, "..", "..", "data.sqlite")
+        cnx = create_engine(path, connect_args={"check_same_thread": False}).connect()
 
         df.to_sql("computermania_clean_df", cnx, if_exists="replace")
 
