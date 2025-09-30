@@ -19,6 +19,7 @@ https://github.com/user-attachments/assets/7da0f6b4-8fc9-4599-b3d1-a63cbe430fc2
 <!-- <video src="static/savvy-shopper-extension-1-small1.mp4" controls autoplay loop muted width="640" style="border: 2px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin: 20px;">
   Your browser does not support the video tag.
 </video> -->
+https://github.com/user-attachments/assets/ed6f0094-43dc-408a-acfc-0b1b44f42669
 
 </div>
 
