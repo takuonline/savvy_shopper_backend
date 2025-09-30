@@ -404,6 +404,8 @@ class DbHelper:
 
         # get the top n product into dict format and put in list
 
+
+
         cheap_products_list = []
         for i in newlist[:num]:
             product_dict = {
