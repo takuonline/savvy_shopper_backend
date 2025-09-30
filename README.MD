@@ -9,14 +9,16 @@ This backend powers two applications: a Flutter mobile app and a Chrome extensio
 <div align="center">
 
 ### 📱 Mobile App
-<video src="static/savvy-shopper-demo-1_small1.mp4" controls autoplay loop muted width="300" style="border: 8px solid #1a1a1a; border-radius: 24px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); margin: 20px;">
+<!-- <video src="static/savvy-shopper-demo-1_small1.mp4" controls autoplay loop muted width="300" style="border: 8px solid #1a1a1a; border-radius: 24px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); margin: 20px;">
   Your browser does not support the video tag.
-</video>
+</video> -->
+https://github.com/user-attachments/assets/7da0f6b4-8fc9-4599-b3d1-a63cbe430fc2
+
 
 ### 🌐 Chrome Extension
-<video src="static/savvy-shopper-extension-1-small1.mp4" controls autoplay loop muted width="640" style="border: 2px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin: 20px;">
+<!-- <video src="static/savvy-shopper-extension-1-small1.mp4" controls autoplay loop muted width="640" style="border: 2px solid #e0e0e0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin: 20px;">
   Your browser does not support the video tag.
-</video>
+</video> -->
 
 </div>
 
